@@ -1,1 +1,1 @@
-# CS445-FinalProject
+# HCI-FP-Student-Showcase
