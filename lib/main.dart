@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           new Flexible(
-                            child: Text('Select a student:',
+                            child: Text('Select a rating:',
                                 style: TextStyle(fontSize: 20)),
                           ),
                           new Flexible(
