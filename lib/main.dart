@@ -29,20 +29,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String errorMessage = "";
   String dropdownValue;
+  String scoreValue;
   List<String> names = [];
   TextEditingController scoreTextField = new TextEditingController();
 
   void _submitStudentScore() {
     setState(() {
-      if (dropdownValue == null) {
-        errorMessage = "Sorry, you need to select a student to submit a score.";
-      } else if (int.parse(scoreTextField.text) >= 0 &&
-          int.parse(scoreTextField.text) <= 5) {
-        errorMessage = "";
-        names.add(dropdownValue + " | Score: " + scoreTextField.text);
-      } else {
-        errorMessage = "Sorry, you need to submit a score between 0 and 5.";
+      if (dropdownValue == null || scoreValue == null) {
+        errorMessage =
+            "Sorry, you need to select a student and a rating to submit a score.";
       }
+      errorMessage = "";
+      names.add(dropdownValue + " | Score: " + scoreValue);
     });
   }
 
@@ -101,12 +99,33 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           new Flexible(
-                            child: TextFormField(
-                              controller: scoreTextField,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Score out of 5',
+                            child: DropdownButton<String>(
+                              value: scoreValue,
+                              icon: Icon(Icons.arrow_downward),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: TextStyle(color: Colors.deepPurple),
+                              underline: Container(
+                                height: 2,
+                                color: Colors.deepPurpleAccent,
                               ),
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  scoreValue = newValue;
+                                });
+                              },
+                              items: <String>[
+                                '5 - Excellent',
+                                '4 - Good',
+                                '3 - Fair',
+                                '2 - Poor',
+                                '1 - Very Poor'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
                             ),
                           ),
                         ],
