@@ -94,10 +94,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Container(
                       margin: const EdgeInsets.all(20.0),
-                      width: 150.0,
+                      width: 300,
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
+                          new Flexible(
+                            child: Text('Select a student:',
+                                style: TextStyle(fontSize: 20)),
+                          ),
                           new Flexible(
                             child: DropdownButton<String>(
                               value: scoreValue,
