@@ -8,12 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CCSC MW - Judge Panel',
+      title: 'CCSC MW',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'CCSC MW - Judge Panel'),
+      home: MyHomePage(title: 'CCSC MW'),
     );
   }
 }
