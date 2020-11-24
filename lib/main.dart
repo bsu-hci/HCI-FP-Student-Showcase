@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String dropdownValue;
   String scoreValue;
   List<String> names = [];
-  TextEditingController scoreTextField = new TextEditingController();
+  TextEditingController notesText = new TextEditingController();
 
   void _submitStudentScore() {
     setState(() {
@@ -40,7 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
             "Sorry, you need to select a student and a rating to submit a score.";
       }
       errorMessage = "";
-      names.add(dropdownValue + " | Score: " + scoreValue);
+      names.add(dropdownValue +
+          " | Score: " +
+          scoreValue +
+          " | Notes: " +
+          notesText.text);
     });
   }
 
@@ -135,6 +139,27 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                     ),
+                    new Row(children: <Widget>[
+                      new Flexible(
+                        child: TextField(
+                          controller: notesText,
+                          maxLines: 2,
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.blue, width: 3.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 3.0),
+                              ),
+                              hintText:
+                                  "Enter your any notes for the student here."),
+                        ),
+                      )
+                    ]),
+                    const SizedBox(height: 30),
+                    Text(errorMessage, style: TextStyle(fontSize: 20)),
                     const SizedBox(height: 30),
                     RaisedButton(
                       onPressed: _submitStudentScore,
